@@ -23,10 +23,12 @@ public struct NotionBlock: NotionObject {
     public let toDo: BlockToDo?
     public let toggle: BlockToggle?
     public let childPage: BlockPage?
+    public let code: NotionCode?
+    public let hasChildren: Bool
 }
 
 public enum BlockType: String, Decodable {
-    case paragraph, toggle, unsupported
+    case paragraph, toggle, unsupported, code, image, bookmark, quote, table, divider, column, file
     
     case heading1 = "heading_1"
     case heading2 = "heading_2"
@@ -35,11 +37,14 @@ public enum BlockType: String, Decodable {
     case numberedListItem = "numbered_list_item"
     case toDo = "to_do"
     case childPage = "child_page"
+    case childDatabase = "child_database"
+    case tableRow = "table_row"
+    case columnList = "column_list"
 }
 
 public struct BlockParagraph: Decodable {
     public let text: [NotionRichText]
-    public let children: [NotionBlock]
+    public let children: [NotionBlock]?
 }
 
 public struct BlockHeading1: Decodable {
@@ -56,23 +61,23 @@ public struct BlockHeading3: Decodable {
 
 public struct BlockBulletedListItem: Decodable {
     public let text: [NotionRichText]
-    public let children: [NotionBlock]
+    public let children: [NotionBlock]?
 }
 
 public struct BlockNumberedListItem: Decodable {
     public let text: [NotionRichText]
-    public let children: [NotionBlock]
+    public let children: [NotionBlock]?
 }
 
 public struct BlockToDo: Decodable {
     public let text: [NotionRichText]
-    public let children: [NotionBlock]
+    public let children: [NotionBlock]?
     public let checked: Bool?
 }
 
 public struct BlockToggle: Decodable {
     public let text: [NotionRichText]
-    public let children: [NotionBlock]
+    public let children: [NotionBlock]?
 }
 
 public struct BlockPage: Decodable {

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import UIKit
+// import UIKit
 
 // TODO: Support all rich text types
 

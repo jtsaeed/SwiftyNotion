@@ -43,6 +43,7 @@ public struct NotionAPIGateway {
     
     public func retrieveBlockChildren(withId id: String) async throws -> [NotionBlock] {
         let data = try await request(.retrieveBlockChildren(blockId: id))
+//        print("💼\(String(data: data, encoding: .utf8))")
         let list = try decoder.decode(NotionBlockList.self, from: data)
         return list.results
     }
